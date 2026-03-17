@@ -5,38 +5,99 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shraddha's Homemade Delights</title>
 
-<style>
-body {margin:0;font-family:'Segoe UI',sans-serif;background:#fafafa;color:#333;}
-header {background:url('https://images.unsplash.com/photo-1606787366850-de6330128bfc') center/cover;height:60vh;display:flex;flex-direction:column;justify-content:center;align-items:center;color:white;text-align:center;}
-header h1{font-size:3em;margin:0;}
-header p{font-size:1.2em;}
-.btn{background:#ff6b35;color:white;padding:12px 20px;border-radius:8px;text-decoration:none;margin-top:10px;display:inline-block;}
-.container{max-width:1100px;margin:auto;padding:40px 20px;}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;}
-.card{background:white;border-radius:12px;overflow:hidden;box-shadow:0 4px 10px rgba(0,0,0,0.1);transition:.3s;}
-.card:hover{transform:scale(1.05);} 
-.card img{width:100%;height:180px;object-fit:cover;}
-.card-content{padding:15px;}
-.price{color:#ff6b35;font-weight:bold;}
-.cart{position:fixed;top:20px;right:20px;background:#ff6b35;color:white;padding:10px 15px;border-radius:20px;cursor:pointer;}
-form{background:white;padding:20px;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.1);}
-input,textarea{width:100%;padding:10px;margin:10px 0;border-radius:6px;border:1px solid #ccc;}
-button{background:#ff6b35;color:white;padding:12px;border:none;border-radius:8px;width:100%;cursor:pointer;}
-footer{background:#222;color:white;text-align:center;padding:20px;margin-top:40px;}
-</style>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
+<style>
+/* Reset & Body */
+* {margin:0; padding:0; box-sizing:border-box;}
+body {font-family:'Montserrat', sans-serif; line-height:1.6; background:#fafafa; color:#333; scroll-behavior:smooth;}
+a {text-decoration:none; color:inherit;}
+img {max-width:100%; display:block;}
+
+/* Navbar */
+nav {position:fixed; width:100%; background:#fff; box-shadow:0 2px 8px rgba(0,0,0,0.1); z-index:100;}
+nav .container {display:flex; justify-content:space-between; align-items:center; padding:10px 20px;}
+nav .logo {font-weight:700; font-size:1.5em; color:#ff6b35;}
+nav ul {display:flex; gap:20px; list-style:none;}
+nav ul li a {padding:8px 12px; transition:0.3s;}
+nav ul li a:hover {background:#ff6b35; color:white; border-radius:6px;}
+
+/* Header */
+header {background:url('https://images.unsplash.com/photo-1606787366850-de6330128bfc') center/cover; height:80vh; display:flex; flex-direction:column; justify-content:center; align-items:center; color:white; text-align:center;}
+header h1{font-size:3.2em; margin-bottom:10px; text-shadow: 1px 1px 6px rgba(0,0,0,0.6);}
+header p{font-size:1.4em; margin-bottom:20px; text-shadow: 1px 1px 4px rgba(0,0,0,0.6);}
+header .btn{background:#ff6b35; padding:14px 24px; border-radius:8px; font-weight:600; transition:0.3s;}
+header .btn:hover{background:#ff4a10;}
+
+/* Sections */
+section{padding:60px 20px;}
+.container{max-width:1100px; margin:auto;}
+h2{text-align:center; margin-bottom:40px; font-size:2.4em; color:#ff6b35;}
+
+/* Menu Grid */
+.grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:25px;}
+.card{background:white; border-radius:12px; overflow:hidden; box-shadow:0 6px 15px rgba(0,0,0,0.1); transition:transform 0.3s;}
+.card:hover{transform:translateY(-10px);}
+.card img{height:180px; object-fit:cover;}
+.card-content{padding:15px;}
+.card-content h3{margin-bottom:10px; font-size:1.3em;}
+.price{color:#ff6b35; font-weight:bold; margin-bottom:10px;}
+.card-content button{background:#ff6b35; color:white; padding:10px 15px; border:none; border-radius:6px; cursor:pointer; transition:0.3s; width:100%;}
+.card-content button:hover{background:#ff4a10;}
+
+/* Cart */
+.cart{position:fixed; top:20px; right:20px; background:#ff6b35; color:white; padding:12px 18px; border-radius:30px; cursor:pointer; z-index:200; box-shadow:0 4px 12px rgba(0,0,0,0.2); transition:0.3s;}
+.cart:hover{background:#ff4a10;}
+
+/* Form */
+form{background:white; padding:30px; border-radius:12px; box-shadow:0 6px 15px rgba(0,0,0,0.1);}
+input,textarea{width:100%; padding:12px; margin:12px 0; border-radius:6px; border:1px solid #ccc; font-size:1em;}
+button[type="submit"]{background:#ff6b35; color:white; padding:14px; border:none; border-radius:8px; width:100%; font-weight:600; cursor:pointer; transition:0.3s;}
+button[type="submit"]:hover{background:#ff4a10;}
+
+/* Footer */
+footer{background:#222; color:white; text-align:center; padding:30px 20px; margin-top:40px;}
+footer a{color:#ff6b35; margin:0 10px;}
+
+/* About Section */
+.about {display:flex; flex-wrap:wrap; gap:20px; align-items:center;}
+.about img{flex:1 1 400px; border-radius:12px; box-shadow:0 6px 15px rgba(0,0,0,0.1);}
+.about .text{flex:1 1 400px;}
+.about .text p{margin-bottom:15px; line-height:1.8;}
+
+/* Smooth Scroll offset */
+html {scroll-padding-top:70px;}
+</style>
 </head>
 <body>
 
+<!-- Navbar -->
+<nav>
+<div class="container">
+<div class="logo">Shraddha's Delights</div>
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#menu">Menu</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</div>
+</nav>
+
+<!-- Cart -->
 <div class="cart" onclick="viewCart()">🛒 Cart (<span id="cartCount">0</span>)</div>
 
-<header>
+<!-- Header -->
+<header id="home">
 <h1>Shraddha's Homemade Delights 🍪</h1>
 <p>Fresh • Homemade • Authentic Taste</p>
 <a href="#menu" class="btn">Order Now</a>
 </header>
 
-<div class="container" id="menu">
+<!-- Menu Section -->
+<section id="menu">
+<div class="container">
 <h2>🍽️ Menu</h2>
 <div class="grid">
 
@@ -44,15 +105,17 @@ footer{background:#222;color:white;text-align:center;padding:20px;margin-top:40p
 <img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e">
 <div class="card-content">
 <h3>Chocolate Chip Cookies</h3>
+<p>Crunchy outside, soft inside, made with real chocolate chips.</p>
 <p class="price">$10</p>
-<button onclick="addToCart('Cookies')">Add to Cart</button>
+<button onclick="addToCart('Chocolate Chip Cookies')">Add to Cart</button>
 </div></div>
 
 <div class="card">
 <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b">
 <div class="card-content">
 <h3>Biscotti</h3>
-<p class="price">$10</p>
+<p>Traditional Italian almond biscuits, perfect with coffee.</p>
+<p class="price">$12</p>
 <button onclick="addToCart('Biscotti')">Add to Cart</button>
 </div></div>
 
@@ -60,31 +123,69 @@ footer{background:#222;color:white;text-align:center;padding:20px;margin-top:40p
 <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c">
 <div class="card-content">
 <h3>Mini Muffins</h3>
-<p class="price">$10</p>
-<button onclick="addToCart('Muffins')">Add to Cart</button>
+<p>Assorted mini muffins with fresh fruits and chocolate chips.</p>
+<p class="price">$8</p>
+<button onclick="addToCart('Mini Muffins')">Add to Cart</button>
 </div></div>
 
 </div>
+</div>
+</section>
 
-<h2>📝 Checkout</h2>
+<!-- About Section -->
+<section id="about">
+<div class="container about">
+<img src="https://images.unsplash.com/photo-1556911220-e15b29be8c12" alt="Baking Image">
+<div class="text">
+<h2>👩‍🍳 About Us</h2>
+<p>Shraddha's Homemade Delights is all about bringing love and authenticity into every baked good. We use fresh ingredients, traditional recipes, and a lot of care to make every treat special.</p>
+<p>Our passion is to make your taste buds dance with joy. From cookies to muffins, every bite tells a story of care and flavor.</p>
+</div>
+</div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact">
+<div class="container">
+<h2>📬 Contact / Checkout</h2>
 <form onsubmit="checkout(event)">
 <input id="name" placeholder="Your Name" required>
-<textarea id="details" placeholder="Extra details (custom seeds etc)"></textarea>
+<input id="email" placeholder="Your Email" type="email" required>
+<textarea id="details" placeholder="Extra details (custom seeds, allergies, etc.)"></textarea>
 <button type="submit">Place Order</button>
 </form>
-
 </div>
+</section>
 
+<!-- Footer -->
 <footer>
 <p>Pickup: 9601 Custer Rd, Plano, TX</p>
 <p>© 2026 Shraddha's Homemade Delights ❤️</p>
+<p>
+<a href="#">Instagram</a> | <a href="#">Facebook</a> | <a href="#">Twitter</a>
+</p>
 </footer>
 
+<!-- Scripts -->
 <script>
 let cart=[];
-function addToCart(item){cart.push(item);document.getElementById('cartCount').innerText=cart.length;}
-function viewCart(){alert('Cart:\n'+cart.join('\n'));}
-function checkout(e){e.preventDefault();let name=document.getElementById('name').value;let details=document.getElementById('details').value;let body='Order:\n'+cart.join('\n')+'\n\nDetails:'+details;window.location.href=`mailto:tavareshraddha@gmail.com?subject=Order from ${name}&body=${encodeURIComponent(body)}`;}
+function addToCart(item){ 
+  cart.push(item); 
+  document.getElementById('cartCount').innerText = cart.length;
+}
+function viewCart(){ 
+  if(cart.length===0){alert("Your cart is empty!"); return;}
+  alert('🛒 Cart:\n' + cart.join('\n'));
+}
+function checkout(e){
+  e.preventDefault();
+  if(cart.length===0){alert("Your cart is empty!"); return;}
+  let name=document.getElementById('name').value;
+  let email=document.getElementById('email').value;
+  let details=document.getElementById('details').value;
+  let body='Order:\n'+cart.join('\n')+'\n\nDetails: '+details;
+  window.location.href=`mailto:tavareshraddha@gmail.com?subject=Order from ${name}&body=${encodeURIComponent(body)}`;
+}
 </script>
 
 </body>
