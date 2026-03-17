@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu - Shraddha's Homemade Delights</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Montserrat',sans-serif;background:#fafafa;color:#333;scroll-behavior:smooth;}
+a{text-decoration:none;color:inherit;}
+img{max-width:100%;display:block;}
+
+/* Navbar */
+nav{position:fixed;width:100%;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.1);z-index:100;}
+nav .container{display:flex;justify-content:space-between;align-items:center;padding:10px 20px;}
+nav .logo{font-weight:700;font-size:1.5em;color:#ff6b35;}
+nav ul{display:flex;gap:20px;list-style:none;}
+nav ul li a{padding:8px 12px;transition:0.3s;}
+nav ul li a:hover{background:#ff6b35;color:white;border-radius:6px;}
+
+/* Cart */
+.cart{position:fixed;top:20px;right:20px;background:#ff6b35;color:white;padding:12px 18px;border-radius:30px;cursor:pointer;z-index:200;box-shadow:0 4px 12px rgba(0,0,0,0.2);transition:0.3s;}
+.cart:hover{background:#ff4a10;}
+
+/* Sections */
+section{padding:60px 20px;}
+.container{max-width:1100px;margin:auto;}
+h2{text-align:center;margin-bottom:40px;font-size:2.4em;color:#ff6b35;}
+
+/* Menu Grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px;}
+.card{background:white;border-radius:12px;overflow:hidden;box-shadow:0 6px 15px rgba(0,0,0,0.1);transition:transform 0.3s;}
+.card:hover{transform:translateY(-10px);}
+.card img{height:180px;object-fit:cover;}
+.card-content{padding:15px;}
+.card-content h3{margin-bottom:10px;font-size:1.3em;}
+.card-content p{margin-bottom:10px;}
+.price{color:#ff6b35;font-weight:bold;margin-bottom:10px;}
+.card-content button{background:#ff6b35;color:white;padding:10px 15px;border:none;border-radius:6px;cursor:pointer;transition:0.3s;width:100%;}
+.card-content button:hover{background:#ff4a10;}
+
+/* Footer */
+footer{background:#222;color:white;text-align:center;padding:30px 20px;margin-top:40px;}
+footer a{color:#ff6b35;margin:0 10px;}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+<div class="container">
+<div class="logo">Shraddha's Delights</div>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="#menu">Menu</a></li>
+<li><a href="index.html#about">About</a></li>
+<li><a href="index.html#contact">Contact</a></li>
+</ul>
+</div>
+</nav>
+
+<!-- Cart -->
+<div class="cart" onclick="viewCart()">🛒 Cart (<span id="cartCount">0</span>)</div>
+
+<!-- Menu Section -->
+<section id="menu">
+<div class="container">
+<h2>🍽️ Full Menu</h2>
+<div class="grid">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e">
+<div class="card-content">
+<h3>Chocolate Chip Cookies</h3>
+<p>Crunchy outside, soft inside, made with real chocolate chips.</p>
+<p class="price">$10</p>
+<button onclick="addToCart('Chocolate Chip Cookies')">Add to Cart</button>
+</div></div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1551024601-bec78aea704b">
+<div class="card-content">
+<h3>Biscotti</h3>
+<p>Traditional Italian almond biscuits, perfect with coffee.</p>
+<p class="price">$12</p>
+<button onclick="addToCart('Biscotti')">Add to Cart</button>
+</div></div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c">
+<div class="card-content">
+<h3>Mini Muffins</h3>
+<p>Assorted mini muffins with fresh fruits and chocolate chips.</p>
+<p class="price">$8</p>
+<button onclick="addToCart('Mini Muffins')">Add to Cart</button>
+</div></div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187">
+<div class="card-content">
+<h3>Brownies</h3>
+<p>Fudgy chocolate brownies with walnuts.</p>
+<p class="price">$11</p>
+<button onclick="addToCart('Brownies')">Add to Cart</button>
+</div></div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092">
+<div class="card-content">
+<h3>Lemon Tart</h3>
+<p>Refreshing lemon tart with buttery crust.</p>
+<p class="price">$12</p>
+<button onclick="addToCart('Lemon Tart')">Add to Cart</button>
+</div></div>
+
+</div>
+</div>
+</section>
+
+<!-- Footer -->
+<footer>
+<p>Pickup: 9601 Custer Rd, Plano, TX</p>
+<p>© 2026 Shraddha's Homemade Delights ❤️</p>
+<p>
+<a href="#">Instagram</a> | <a href="#">Facebook</a> | <a href="#">Twitter</a>
+</p>
+</footer>
+
+<script>
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+updateCartCount();
+function addToCart(item){
+  cart.push(item);
+  localStorage.setItem('cart', JSON.stringify(cart));
+  updateCartCount();
+}
+function updateCartCount(){document.getElementById('cartCount').innerText = cart.length;}
+function viewCart(){
+  if(cart.length===0){alert("Your cart is empty!");return;}
+  alert("🛒 Cart:\n"+cart.join('\n'));
+}
+</script>
+
+</body>
+</html>
