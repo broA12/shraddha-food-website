@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shraddha's Homemade Delights</title>
+
+<style>
+body {margin:0;font-family:'Segoe UI',sans-serif;background:#fafafa;color:#333;}
+header {background:url('https://images.unsplash.com/photo-1606787366850-de6330128bfc') center/cover;height:60vh;display:flex;flex-direction:column;justify-content:center;align-items:center;color:white;text-align:center;}
+header h1{font-size:3em;margin:0;}
+header p{font-size:1.2em;}
+.btn{background:#ff6b35;color:white;padding:12px 20px;border-radius:8px;text-decoration:none;margin-top:10px;display:inline-block;}
+.container{max-width:1100px;margin:auto;padding:40px 20px;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;}
+.card{background:white;border-radius:12px;overflow:hidden;box-shadow:0 4px 10px rgba(0,0,0,0.1);transition:.3s;}
+.card:hover{transform:scale(1.05);} 
+.card img{width:100%;height:180px;object-fit:cover;}
+.card-content{padding:15px;}
+.price{color:#ff6b35;font-weight:bold;}
+.cart{position:fixed;top:20px;right:20px;background:#ff6b35;color:white;padding:10px 15px;border-radius:20px;cursor:pointer;}
+form{background:white;padding:20px;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.1);}
+input,textarea{width:100%;padding:10px;margin:10px 0;border-radius:6px;border:1px solid #ccc;}
+button{background:#ff6b35;color:white;padding:12px;border:none;border-radius:8px;width:100%;cursor:pointer;}
+footer{background:#222;color:white;text-align:center;padding:20px;margin-top:40px;}
+</style>
+
+</head>
+<body>
+
+<div class="cart" onclick="viewCart()">🛒 Cart (<span id="cartCount">0</span>)</div>
+
+<header>
+<h1>Shraddha's Homemade Delights 🍪</h1>
+<p>Fresh • Homemade • Authentic Taste</p>
+<a href="#menu" class="btn">Order Now</a>
+</header>
+
+<div class="container" id="menu">
+<h2>🍽️ Menu</h2>
+<div class="grid">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e">
+<div class="card-content">
+<h3>Chocolate Chip Cookies</h3>
+<p class="price">$10</p>
+<button onclick="addToCart('Cookies')">Add to Cart</button>
+</div></div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1551024601-bec78aea704b">
+<div class="card-content">
+<h3>Biscotti</h3>
+<p class="price">$10</p>
+<button onclick="addToCart('Biscotti')">Add to Cart</button>
+</div></div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c">
+<div class="card-content">
+<h3>Mini Muffins</h3>
+<p class="price">$10</p>
+<button onclick="addToCart('Muffins')">Add to Cart</button>
+</div></div>
+
+</div>
+
+<h2>📝 Checkout</h2>
+<form onsubmit="checkout(event)">
+<input id="name" placeholder="Your Name" required>
+<textarea id="details" placeholder="Extra details (custom seeds etc)"></textarea>
+<button type="submit">Place Order</button>
+</form>
+
+</div>
+
+<footer>
+<p>Pickup: 9601 Custer Rd, Plano, TX</p>
+<p>© 2026 Shraddha's Homemade Delights ❤️</p>
+</footer>
+
+<script>
+let cart=[];
+function addToCart(item){cart.push(item);document.getElementById('cartCount').innerText=cart.length;}
+function viewCart(){alert('Cart:\n'+cart.join('\n'));}
+function checkout(e){e.preventDefault();let name=document.getElementById('name').value;let details=document.getElementById('details').value;let body='Order:\n'+cart.join('\n')+'\n\nDetails:'+details;window.location.href=`mailto:tavareshraddha@gmail.com?subject=Order from ${name}&body=${encodeURIComponent(body)}`;}
+</script>
+
+</body>
+</html>
